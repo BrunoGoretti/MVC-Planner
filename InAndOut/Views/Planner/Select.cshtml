@@ -6,7 +6,7 @@
             <h2 class="text-primary">Planner List</h2>
         </div>
         <div class="col-6 text-right">
-            <a asp-controller="Planner" asp-action="Select" class='btn btn-primary'> Select only unfinished </a>
+            <a asp-controller="Planner" asp-action="Index" class='btn btn-danger'> Back </a>
             <a asp-controller="Planner" asp-action="Create" class='btn btn-primary'> Create new planner </a>
         </div>
     </div>
@@ -53,17 +53,18 @@
                                 @if (planner.IsDone == false)
                                 {
                                     <a asp-controller="Planner" asp-action="Update" asp-route-Id="@planner.Id" class="btn btn-primary mx-1"> Update </a>
+                                    <a asp-controller="Planner" asp-action="Delete" asp-route-Id="@planner.Id" class="btn btn-danger mx-1"> Delete </a>
                                 }
                                 else
                                 {
                                     <a asp-controller="Planner" asp-action="Update" asp-route-Id="@planner.Id" class="btn btn-secondary mx-1 disabled"> Update </a>
+                                    <a asp-controller="Planner" asp-action="Delete" asp-route-Id="@planner.Id" class="btn btn-secondary mx-1 disabled"> Delete </a>
                                 }
-                                <a asp-controller="Planner" asp-action="Delete" asp-route-Id="@planner.Id" class="btn btn-danger mx-1"> Delete </a>
                             </div>
                         </td>
                         <td width="20%">
                             <div class2="w-100 btn-group" role="group">
-                                @if (planner.IsDone == true)
+                                 @if(planner.IsDone == true)
                                 {
                                     <a asp-controller="Planner" asp-action="Done" asp-route-Id="@planner.Id" class="btn btn-success mx-1"> Done </a>
                                 }
@@ -85,3 +86,5 @@
     }
 
 </div>
+
+

@@ -3,6 +3,8 @@ using InAndOut.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+
 
 namespace InAndOut.Controllers
 {
@@ -87,7 +89,7 @@ namespace InAndOut.Controllers
             }
             return View(obj);
         }
- 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(PlannerModel obj)
@@ -102,11 +104,29 @@ namespace InAndOut.Controllers
             return View(obj);
         }
 
-       [HttpGet]
+        [HttpGet]
         public IActionResult Done(int? id)
         {
             var obj = _db.Planner.Find(id);
             obj.IsDone = true;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Select()
+        {
+            IEnumerable<PlannerModel> objList = _db.Planner;
+            var filterList = objList.Where(x => !x.IsDone);
+            return View(filterList);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Select(PlannerModel obj)
+        {
+            obj.DateTime = DateTime.Now;
+            _db.Planner.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
