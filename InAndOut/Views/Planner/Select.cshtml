@@ -50,16 +50,8 @@
                         }
                         <td width="30%">
                             <div class="w-100 btn-group" role="group">
-                                @if (planner.IsDone == false)
-                                {
                                     <a asp-controller="Planner" asp-action="Update" asp-route-Id="@planner.Id" class="btn btn-primary mx-1"> Update </a>
                                     <a asp-controller="Planner" asp-action="Delete" asp-route-Id="@planner.Id" class="btn btn-danger mx-1"> Delete </a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Planner" asp-action="Update" asp-route-Id="@planner.Id" class="btn btn-secondary mx-1 disabled"> Update </a>
-                                    <a asp-controller="Planner" asp-action="Delete" asp-route-Id="@planner.Id" class="btn btn-secondary mx-1 disabled"> Delete </a>
-                                }
                             </div>
                         </td>
                         <td width="20%">
